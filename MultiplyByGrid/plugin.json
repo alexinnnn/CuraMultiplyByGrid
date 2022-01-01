@@ -1,0 +1,8 @@
+{
+    "name": "Multiply By Grid",
+    "author": "Alexander",
+    "version": "1.0.0",
+    "description": "Multiply model by grid",
+    "api": "7.4.0",
+    "i18n-catalog": "cura"
+}
