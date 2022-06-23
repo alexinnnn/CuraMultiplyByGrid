@@ -2,7 +2,7 @@
 // Uranium is released under the terms of the LGPLv3 or higher.
 
 import QtQuick 2.2
-import QtQuick.Controls 1.2
+import QtQuick.Controls 2.15
 
 import UM 1.1 as UM
 
@@ -54,7 +54,7 @@ Item
         selected_item.focus = true
     }
 
-    Button
+    /*Button
     {
         id: resetScaleButton
         anchors.top: textfields.bottom
@@ -65,10 +65,21 @@ Item
 
         //: Reset scale tool button
         text: catalog.i18nc("@action:button","Multiply")
-        iconSource: UM.Theme.getIcon("scale_reset");
+        //iconSource: UM.Theme.getIcon("scale_reset");
+		background: Item
+                        {
+                            UM.ColorImage
+                            {
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: parent.width
+                                height: width
+                                color: parent.hovered ? UM.Theme.getColor("setting_control_button_hover") : UM.Theme.getColor("setting_control_button")
+                                source: UM.Theme.getIcon("Minus")
+                            }
+                        }
         property bool needBorder: true
 
-        style: UM.Theme.styles.tool_button;
+        //style: UM.Theme.styles.tool_button;
 
         onClicked:
         {
@@ -80,7 +91,24 @@ Item
             UM.ActiveTool.triggerAction("doMultiply");
             pcsqty.text = UM.ActiveTool.properties.getValue("PcsQty");
         }
-    }
+    }*/
+	Button {
+		id: resetScaleButton
+        anchors.top: textfields.bottom
+        anchors.left: textfields.left
+        anchors.topMargin: UM.Theme.getSize("default_margin").height;
+        anchors.leftMargin: UM.Theme.getSize("default_margin").width;
+		height: UM.Theme.getSize("setting_control").height
+		text: "Размножить";
+		enabled: true;
+		onClicked:
+		{
+			selectTextInTextfield(depthTextField)
+			selectTextInTextfield(widthTextField)
+            UM.ActiveTool.triggerAction("doMultiply");
+            pcsqty.text = UM.ActiveTool.properties.getValue("PcsQty");
+		}
+	}
 
 
     Flow
@@ -155,7 +183,7 @@ Item
             width: UM.Theme.getSize("setting_control").width;
             height: UM.Theme.getSize("setting_control").height;
             property string unit: "mm";
-            style: UM.Theme.styles.text_field;
+            //style: UM.Theme.styles.text_field;
             text: widthText
             validator: DoubleValidator
             {
@@ -177,7 +205,7 @@ Item
             width: UM.Theme.getSize("setting_control").width;
             height: UM.Theme.getSize("setting_control").height;
             property string unit: "mm";
-            style: UM.Theme.styles.text_field;
+            //style: UM.Theme.styles.text_field;
             text: depthText
             validator: DoubleValidator
             {
@@ -248,7 +276,7 @@ Item
             width: UM.Theme.getSize("setting_control").width;
             height: UM.Theme.getSize("setting_control").height;
             property string unit: "max pcs";
-            style: UM.Theme.styles.text_field;
+            //style: UM.Theme.styles.text_field;
             text: xPercentageText
             validator: DoubleValidator
             {
@@ -271,7 +299,7 @@ Item
             width: UM.Theme.getSize("setting_control").width;
             height: UM.Theme.getSize("setting_control").height;
             property string unit: "max pcs";
-            style: UM.Theme.styles.text_field;
+            //style: UM.Theme.styles.text_field;
 
             text: yPercentageText
             validator: DoubleValidator
